@@ -1,0 +1,39 @@
+Run the simulator with one of the following: 
+
+./tmsim -add [x] [y]
+./tmsim -mult [x] [y]
+./tmsim -exp [x] [y]
+
+It will generate a trace file in the current directory. 
+Some notes about the traces:
+
+1) Traces for addition have maximum detail. They are given for each individual
+   computation step.
+
+2) All states are labelled with names that describe what they are intended to do
+   from the time the TM transitions to them, until the time when the TM 
+   transitions to another state. 
+
+3) Some state labels have asterisks (*) because these labels actually represent
+   a set of states and a number of computation steps that transition between
+   them.
+
+4) In mult and exp, moving from the last cell with a 0 or 1 on the tape to the 
+   first cell that has a 0 1 is done by condensing 3 states into one to reduce
+   the trace length.
+
+5) In mult, additions on the second tape are done sequentially without 
+   interruption in an identical matter to the simulated addition machine.
+   The only difference, of course, is that there is no halt state, but instead
+   a transition to a predetermined next state in the multiplication TM.
+   Add* represents the states traversed during the entire addition before this 
+   final transition to save space in the trace.
+
+6) Similarly, in exp, mult is treated as though it's a single state that only
+   transitions to another state during a step of computation when the 
+   multiplication has finished and the output is on the second tape.
+
+7) Generally, mult and exp also reduce trace length by only providing 
+   information about the configuration at "critical steps" where a transition
+   between a state and some other state (not back to itself) occurs.
+
